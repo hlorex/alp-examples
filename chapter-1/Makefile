@@ -1,21 +1,11 @@
-########################################################################
-# Code listing from "Advanced Linux Programming," by CodeSourcery LLC  #
-# Copyright (C) 2001 by New Riders Publishing                          #
-# See COPYRIGHT for license information.                               #
-########################################################################
+reciprocal: main.o reciprocal.o
+	g++ $(CFLAGS) -o reciprocal main.o reciprocal.o
 
-OBJECTS		= reciprocal.o
-LIBRARIES	=
-PROGRAMS	= main
+main.o: main.c reciprocal.hpp
+	gcc $(CFLAGS) -c main.c
 
-.PHONY:         all clean
+reciprocal.o: reciprocal.cpp reciprocal.hpp
+	g++ $(CFLAGS) -c reciprocal.cpp
 
-# Default target: build everything.
-all:            $(OBJECTS) $(LIBRARIES) $(PROGRAMS)
-
-# Clean up build products.
 clean:
-	rm -f *.o $(LIBRARIES) $(PROGRAMS)
-
-# Additional dependencies.
-main:		reciprocal.o
+	rm -f *.o reciprocal reciprocal.o main.o
