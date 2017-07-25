@@ -13,29 +13,18 @@ int str_to_int(const char *str)
 
 int main (int argc, char *argv[])
 {
-    int a, c, d, i, x, k, q;
-
+    int a, c, d, i, x, k, q, tmp;
+    char strnum[32];
     if (argc <= 1)
         return 1;
 
     a = str_to_int(argv[1]);
-    q = a;
 
-    for (k = 1, c = 0; a > 0; a = a / 10)
+    for (tmp = a , i = 0 ; tmp ; strnum[i++] = '0' + tmp % 10 , tmp/=10)
     {
-        k *= 10;
-        c++;
+        putc('0' + tmp % 10, stdout);
     }
-    k = k / 10;
-    printf("%d, %d, %d\n", c, k, q);
-    for (d = 0; c > 0; k/=10)
-    {
-        d = q / k;
-        q = q % k;
-        c--;
-        putc(0x30 + d, stdout);
-        putc('\n', stdout);
-    }
+    //strrev(strnum);
 
     putc('\n', stdout);
 
