@@ -13,7 +13,7 @@ int str_to_int(const char *str)
 
 int main (int argc, char *argv[])
 {
-    int a, b, c, d, i, x, k, q;
+    int a, c, d, i, x, k, q;
 
     if (argc <= 1)
         return 1;
@@ -28,10 +28,10 @@ int main (int argc, char *argv[])
     }
     k = k / 10;
     printf("%d, %d, %d\n", c, k, q);
-    for (d = 0; c >= 0; k/=10)
+    for (d = 0; c > 0; k/=10)
     {
         d = q / k;
-        q = q % 10;
+        q = q % k;
         c--;
         putc(0x30 + d, stdout);
         putc('\n', stdout);
